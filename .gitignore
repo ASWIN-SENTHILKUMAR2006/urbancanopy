@@ -34,3 +34,6 @@ bin/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+### Local-only working notes ###
+docs/07-complete-knowledge-base.md
