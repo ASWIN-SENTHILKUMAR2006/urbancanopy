@@ -10,6 +10,41 @@ it.
 
 ---
 
+## The problem
+
+A city decides to plant two thousand trees. Which species, how many of each, and what will it
+actually achieve?
+
+In practice that decision is usually made on availability, cost and appearance, because the
+environmental answer is genuinely hard to get at:
+
+- **The numbers are scattered.** Per-species sequestration and pollutant-removal rates exist in
+  the literature, but assembling them into a figure for *this* planting on *this* site means a
+  spreadsheet somebody built once and nobody can audit.
+- **Planting counts are not outcomes.** "Two thousand trees" says nothing about carbon, and
+  quietly ignores that not every sapling survives and none of them perform at full capacity for
+  years.
+- **Bigger always looks better.** Comparing two proposals on totals rewards whichever plants
+  more trees, which is not the same as the better design.
+- **Space is assumed, not checked.** A mix that needs 19,600 m² at its recommended spacing does
+  not fit on 12,000 m², and nothing in a species list makes that visible until the canopy fails
+  to close.
+- **Nobody can check the working.** A figure in a proposal with no stated source, no assumptions
+  and no arithmetic is not evidence — and it is exactly the kind of number that gets quoted for
+  years.
+
+**UrbanCanopy makes that estimate explicit, sourced and reproducible.** It applies survival and
+maturity adjustments so the headline reflects trees that live rather than trees that were
+planted; it assesses whether the planting physically fits; it normalises comparisons per tree
+and per 100 m² so size cannot masquerade as quality; and it shows the arithmetic and cites the
+literature behind every value. When a plan is completed, the constants that produced its figures
+are frozen with it, so a report quoted in March still reconciles in December.
+
+It is a planning and educational instrument, not a certified carbon-accounting one — and it says
+so on every screen and in every document that shows a computed value.
+
+---
+
 ## What it does
 
 | | |
