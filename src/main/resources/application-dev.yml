@@ -1,0 +1,33 @@
+#
+# Development profile — verbose diagnostics, no static-asset caching.
+#
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  web:
+    resources:
+      cache:
+        period: 0
+      chain:
+        cache: false
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+app:
+  security:
+    # Opens the seeded accounts so a fresh checkout is usable immediately. The application
+    # logs a loud warning naming every account this touches.
+    seed-password: ${UC_SEED_PASSWORD:Planner@123}
+
+logging:
+  level:
+    com.urbancanopy: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.flywaydb: INFO

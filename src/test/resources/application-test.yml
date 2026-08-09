@@ -1,0 +1,71 @@
+#
+# Repository slice tests.
+#
+# Flyway is off: its migrations are MySQL-specific by design (InnoDB, utf8mb4 collation, a
+# JSON column) and will not run on H2. The schema is generated from the JPA entities instead.
+#
+# That trade is deliberate and worth stating. These tests verify the hand-written JPQL — that
+# every query parses, joins correctly and returns what its name claims. They do NOT verify
+# that the entities agree with the migrated schema; the application checks that itself on
+# every real start-up, because ddl-auto=validate makes it refuse to boot when they drift.
+#
+spring:
+  datasource:
+    url: jdbc:h2:mem:urbancanopy;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    # @DataJpaTest turns SQL logging on by default; a passing run should be quiet so a
+    # failing one is readable.
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: false
+
+  sql:
+    init:
+      mode: never
+
+app:
+  name: UrbanCanopy
+  version: test
+  engine-version: test
+  disclaimer: Estimates based on published scientific averages.
+  pagination:
+    default-page-size: 10
+    max-page-size: 100
+  upload:
+    directory: ./target/test-uploads
+    public-path: /uploads/species/
+    allowed-content-types: image/jpeg,image/png,image/webp
+    max-file-size-bytes: 2097152
+  password-policy:
+    min-length: 8
+    max-length: 72
+    require-letter: true
+    require-digit: true
+  plan:
+    min-projection-years: 1
+    max-projection-years: 50
+    max-quantity-per-item: 1000000
+    min-plans-per-comparison: 2
+    max-plans-per-comparison: 4
+    max-items-per-plan: 50
+  security:
+    bootstrap-admin-email: admin@test.local
+    seed-password:
+    max-failed-attempts: 5
+    lock-minutes: 15
+
+logging:
+  level:
+    org.hibernate.SQL: WARN

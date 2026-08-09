@@ -1,0 +1,36 @@
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.versionsBackup
+
+### Application ###
+uploads/
+*.log
+logs/
+
+### Local configuration — may contain credentials ###
+application-local.yml
+application-local.properties
+.env
+
+### IDE — IntelliJ ###
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+### IDE — Eclipse / STS ###
+.classpath
+.project
+.settings/
+.apt_generated/
+bin/
+
+### IDE — VS Code ###
+.vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+desktop.ini

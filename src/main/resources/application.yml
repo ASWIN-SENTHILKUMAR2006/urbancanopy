@@ -1,0 +1,145 @@
+#
+# UrbanCanopy — base configuration
+#
+# Nothing environment-specific is hardcoded here: every value that could differ between
+# machines is read from an environment variable with a sensible local default.
+#
+spring:
+  application:
+    name: urban-canopy
+
+  profiles:
+    default: dev
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:urban_canopy}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: urban-canopy-pool
+      maximum-pool-size: ${DB_POOL_MAX:10}
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    # The schema is owned by Flyway. 'validate' makes the application refuse to start if
+    # an entity and the migrated schema ever disagree, instead of silently altering data.
+    hibernate:
+      ddl-auto: validate
+    # Lazy loading must not leak outside the service transaction; DTO mapping happens
+    # inside @Transactional service methods.
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+          batch_size: 32
+        default_batch_fetch_size: 32
+        order_inserts: true
+        order_updates: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 4MB
+
+  mvc:
+    problemdetails:
+      enabled: false
+
+server:
+  port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript,application/json,image/svg+xml
+    min-response-size: 1024
+  error:
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+    whitelabel:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+# ---------------------------------------------------------------------------------------
+# Application-specific configuration, bound to com.urbancanopy.config.ApplicationProperties
+# ---------------------------------------------------------------------------------------
+app:
+  name: UrbanCanopy
+  version: 1.0.0
+  # Stamped onto every result snapshot so a historical report records which engine produced it
+  engine-version: 1.0.0
+
+  disclaimer: >-
+    These figures are indicative estimates calculated from published scientific average
+    values for each species. Actual environmental performance varies with local climate,
+    soil quality, tree age and health, maintenance practice, and ambient pollutant
+    concentration. This report is intended for planning and educational purposes and is
+    not a certified carbon-accounting instrument.
+
+  pagination:
+    default-page-size: 10
+    max-page-size: 100
+
+  upload:
+    directory: ${UPLOAD_DIR:./uploads/species}
+    public-path: /uploads/species/
+    allowed-content-types: image/jpeg,image/png,image/webp
+    max-file-size-bytes: 2097152
+
+  password-policy:
+    min-length: 8
+    max-length: 72
+    require-letter: true
+    require-digit: true
+
+  plan:
+    min-projection-years: 1
+    max-projection-years: 50
+    max-quantity-per-item: 1000000
+    min-plans-per-comparison: 2
+    max-plans-per-comparison: 4
+    max-items-per-plan: 50
+
+  security:
+    # The account the bootstrap administrator is expected to use (FR-AUTH-08).
+    bootstrap-admin-email: ${UC_ADMIN_EMAIL:admin@urbancanopy.local}
+
+    # Opens the accounts created by the seed migration, which ship without a usable password
+    # because SQL cannot compute a BCrypt hash and a committed hash would be a backdoor.
+    # Blank here on purpose: the dev profile supplies one, production must supply its own.
+    seed-password: ${UC_SEED_PASSWORD:}
+
+    # Temporary lockout after repeated failures (FR-AUTH-11).
+    max-failed-attempts: 5
+    lock-minutes: 15
+
+logging:
+  level:
+    root: INFO
+    com.urbancanopy: INFO

@@ -1,0 +1,213 @@
+/*
+ * UrbanCanopy — design tokens
+ * Phase 4 §2, one-to-one. Loaded AFTER Bootstrap so these values win.
+ *
+ * Every colour is defined here twice: once for light and once for dark. A screen
+ * cannot therefore inherit a palette that has no dark definition, which is the usual
+ * way a "dark mode" ends up with unreadable panels. Components below reference only
+ * tokens — no component file contains a hex value.
+ */
+
+:root {
+    /* ---------------------------------------------------------------- colour · light */
+    --uc-canvas: #F3F6F3;
+    --uc-surface: #FFFFFF;
+    --uc-surface-alt: #F8FBF8;
+    --uc-border: #DCE4DD;
+    --uc-border-strong: #B9C6BC;
+
+    --uc-ink: #132119;
+    --uc-ink-secondary: #4F6157;
+    --uc-ink-muted: #788A7F;
+
+    --uc-primary: #1B6B47;
+    --uc-primary-hover: #14512F;
+    --uc-primary-subtle: #E4F1E9;
+    --uc-on-primary: #FFFFFF;
+
+    --uc-accent: #2A7DA8;
+    --uc-accent-subtle: #E3F0F7;
+
+    --uc-success: #2E7D32;
+    --uc-warning: #A65F00;
+    --uc-danger: #B3261E;
+    --uc-info: #1565A0;
+
+    --uc-success-subtle: #E6F2E7;
+    --uc-warning-subtle: #FBEFE0;
+    --uc-danger-subtle: #FBE9E7;
+    --uc-info-subtle: #E4EFF8;
+
+    /* ------------------------------------------------------- metric colour · light */
+    --uc-m-carbon: #1B6B47;
+    --uc-m-oxygen: #2A7DA8;
+    --uc-m-pm25: #B4691F;
+    --uc-m-pm10: #8A5A3B;
+    --uc-m-no2: #6B5B95;
+    --uc-m-so2: #A4453C;
+    --uc-m-co: #4A6F7C;
+    --uc-m-canopy: #5C8A3A;
+
+    /* ------------------------------------------------------------- space · radius */
+    --uc-s1: 4px;
+    --uc-s2: 8px;
+    --uc-s3: 12px;
+    --uc-s4: 16px;
+    --uc-s5: 24px;
+    --uc-s6: 32px;
+    --uc-s7: 48px;
+    --uc-s8: 64px;
+
+    --uc-r-sm: 6px;
+    --uc-r-md: 10px;
+    --uc-r-lg: 16px;
+    --uc-r-pill: 999px;
+
+    /* ------------------------------------------------------------------- elevation */
+    --uc-sh-1: 0 1px 2px rgba(19, 33, 25, .06), 0 1px 3px rgba(19, 33, 25, .04);
+    --uc-sh-2: 0 2px 6px rgba(19, 33, 25, .08), 0 4px 12px rgba(19, 33, 25, .06);
+    --uc-sh-3: 0 8px 24px rgba(19, 33, 25, .14), 0 2px 8px rgba(19, 33, 25, .08);
+
+    /* ------------------------------------------------------------------------ type */
+    --uc-font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+    --uc-font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+
+    --uc-t-display: 700 2.25rem/1.2 var(--uc-font);
+    --uc-t-h1: 700 1.75rem/1.25 var(--uc-font);
+    --uc-t-h2: 650 1.375rem/1.3 var(--uc-font);
+    --uc-t-h3: 600 1.125rem/1.35 var(--uc-font);
+    --uc-t-body: 400 0.9375rem/1.55 var(--uc-font);
+    --uc-t-small: 400 0.8125rem/1.5 var(--uc-font);
+    --uc-t-metric: 700 2rem/1.1 var(--uc-font);
+
+    /* ---------------------------------------------------------------------- layout */
+    --uc-content-max: 1280px;
+    --uc-sidebar: 256px;
+    --uc-topbar: 56px;
+    --uc-gutter: 24px;
+}
+
+/*
+ * Dark theme.
+ *
+ * Applied by an explicit [data-theme="dark"] on <html>, and by the operating system
+ * preference when the user has expressed no choice. The :not([data-theme="light"])
+ * guard is what lets an explicit light choice win over a dark OS setting.
+ */
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) {
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        color-scheme: dark;
+
+        --uc-canvas: #0F1613;
+        --uc-surface: #17211C;
+        --uc-surface-alt: #1D2822;
+        --uc-border: #2C3A32;
+        --uc-border-strong: #3D4E43;
+
+        --uc-ink: #E8EFE9;
+        --uc-ink-secondary: #A8B8AD;
+        --uc-ink-muted: #7F9186;
+
+        --uc-primary: #4FB07E;
+        --uc-primary-hover: #6BC496;
+        --uc-primary-subtle: #1B3327;
+        --uc-on-primary: #0F1613;
+
+        --uc-accent: #5FAED6;
+        --uc-accent-subtle: #17303D;
+
+        --uc-success: #6BBF6F;
+        --uc-warning: #E0A64A;
+        --uc-danger: #F2837B;
+        --uc-info: #6BAEDC;
+
+        --uc-success-subtle: #17301B;
+        --uc-warning-subtle: #33260F;
+        --uc-danger-subtle: #3A1E1C;
+        --uc-info-subtle: #162A3A;
+
+        --uc-m-carbon: #4FB07E;
+        --uc-m-oxygen: #5FAED6;
+        --uc-m-pm25: #E0A64A;
+        --uc-m-pm10: #C79372;
+        --uc-m-no2: #A794D1;
+        --uc-m-so2: #E08A80;
+        --uc-m-co: #89B4C0;
+        --uc-m-canopy: #93C46B;
+
+        --uc-sh-1: 0 1px 2px rgba(0, 0, 0, .40);
+        --uc-sh-2: 0 2px 6px rgba(0, 0, 0, .45), 0 4px 12px rgba(0, 0, 0, .35);
+        --uc-sh-3: 0 8px 24px rgba(0, 0, 0, .55), 0 2px 8px rgba(0, 0, 0, .40);
+    }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --uc-canvas: #0F1613;
+    --uc-surface: #17211C;
+    --uc-surface-alt: #1D2822;
+    --uc-border: #2C3A32;
+    --uc-border-strong: #3D4E43;
+
+    --uc-ink: #E8EFE9;
+    --uc-ink-secondary: #A8B8AD;
+    --uc-ink-muted: #7F9186;
+
+    --uc-primary: #4FB07E;
+    --uc-primary-hover: #6BC496;
+    --uc-primary-subtle: #1B3327;
+    --uc-on-primary: #0F1613;
+
+    --uc-accent: #5FAED6;
+    --uc-accent-subtle: #17303D;
+
+    --uc-success: #6BBF6F;
+    --uc-warning: #E0A64A;
+    --uc-danger: #F2837B;
+    --uc-info: #6BAEDC;
+
+    --uc-success-subtle: #17301B;
+    --uc-warning-subtle: #33260F;
+    --uc-danger-subtle: #3A1E1C;
+    --uc-info-subtle: #162A3A;
+
+    --uc-m-carbon: #4FB07E;
+    --uc-m-oxygen: #5FAED6;
+    --uc-m-pm25: #E0A64A;
+    --uc-m-pm10: #C79372;
+    --uc-m-no2: #A794D1;
+    --uc-m-so2: #E08A80;
+    --uc-m-co: #89B4C0;
+    --uc-m-canopy: #93C46B;
+
+    --uc-sh-1: 0 1px 2px rgba(0, 0, 0, .40);
+    --uc-sh-2: 0 2px 6px rgba(0, 0, 0, .45), 0 4px 12px rgba(0, 0, 0, .35);
+    --uc-sh-3: 0 8px 24px rgba(0, 0, 0, .55), 0 2px 8px rgba(0, 0, 0, .40);
+}
+
+/* ------------------------------------------------------------ Bootstrap remapping */
+/*
+ * Bootstrap's own variables are pointed at our tokens rather than overridden per
+ * component. One assignment here re-skins every Bootstrap control at once, which is
+ * what stops the application from looking like default Bootstrap.
+ */
+:root {
+    --bs-body-bg: var(--uc-canvas);
+    --bs-body-color: var(--uc-ink);
+    --bs-body-font-family: var(--uc-font);
+    --bs-body-font-size: 0.9375rem;
+    --bs-border-color: var(--uc-border);
+    --bs-primary: var(--uc-primary);
+    --bs-link-color: var(--uc-primary);
+    --bs-link-hover-color: var(--uc-primary-hover);
+    --bs-emphasis-color: var(--uc-ink);
+    --bs-secondary-color: var(--uc-ink-secondary);
+    --bs-tertiary-color: var(--uc-ink-muted);
+    --bs-focus-ring-color: rgba(27, 107, 71, .35);
+}

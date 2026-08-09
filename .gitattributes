@@ -1,0 +1,28 @@
+# Normalise line endings in the repository.
+#
+# Everything textual is stored with LF and checked out with the platform's native ending, so a
+# Windows and a Linux contributor do not produce diffs that touch every line of a file they did
+# not change.
+* text=auto
+
+# Explicit, so intent does not depend on Git's content detection.
+*.java      text diff=java
+*.js        text
+*.css       text
+*.html      text diff=html
+*.sql       text
+*.xml       text
+*.yml       text
+*.yaml      text
+*.md        text
+*.properties text
+*.gitignore text
+*.gitattributes text
+
+# Binary — never touch these.
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.webp      binary
+*.pdf       binary
+*.jar       binary

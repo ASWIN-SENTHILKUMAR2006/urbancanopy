@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UrbanCanopy — estimate the environmental impact of an urban plantation</title>
+    <meta name="description" content="Plan an urban tree plantation and estimate its annual carbon sequestration, oxygen generation, air-pollutant removal and canopy coverage.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🌳</text></svg>">
+    <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script>
+        try {
+            const stored = localStorage.getItem('uc.theme');
+            if (stored === 'dark' || stored === 'light') {
+                document.documentElement.setAttribute('data-theme', stored);
+            }
+        } catch (ignored) { /* private mode */ }
+    </script>
+
+    <style>
+        /* Landing-only presentation. Every other screen is composed from app.css. */
+        .uc-hero {
+            display: grid;
+            gap: var(--uc-s5);
+            padding: var(--uc-s8) var(--uc-s5);
+            max-width: 60rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .uc-hero h1 { font: var(--uc-t-display); margin: 0; }
+        .uc-hero p { color: var(--uc-ink-secondary); font-size: 1.0625rem; margin: 0 auto; max-width: 52ch; }
+        .uc-hero-actions { display: flex; gap: var(--uc-s3); justify-content: center; flex-wrap: wrap; }
+        .uc-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--uc-s4);
+            max-width: var(--uc-content-max);
+            margin: 0 auto var(--uc-s8);
+            padding: 0 var(--uc-s5);
+        }
+    </style>
+</head>
+<body>
+<a class="uc-skip" href="#content">Skip to content</a>
+
+<header class="uc-topbar">
+    <a class="uc-brand" href="/">
+        <span class="uc-brand-mark" aria-hidden="true">🌳</span>
+        <span>UrbanCanopy</span>
+    </a>
+    <div class="uc-topbar-spacer"></div>
+    <a class="uc-btn uc-btn--sm" href="/species.html">Species catalogue</a>
+    <a class="uc-btn uc-btn--sm uc-btn--primary" href="/plans.html">Open the planner</a>
+</header>
+
+<main id="content">
+    <section class="uc-hero">
+        <h1>Estimate what an urban plantation will actually do</h1>
+        <p>
+            Compose a planting from a sourced species catalogue and get its annual carbon
+            sequestration, oxygen generation, pollutant removal, canopy coverage and spatial
+            feasibility — computed from published scientific averages, with every figure
+            traceable to the values behind it.
+        </p>
+        <div class="uc-hero-actions">
+            <a class="uc-btn uc-btn--primary" href="/plan-editor.html">Create a plan</a>
+            <a class="uc-btn" href="/species.html">Browse 25 species</a>
+        </div>
+    </section>
+
+    <section class="uc-features" aria-label="What the system computes">
+        <div class="uc-card">
+            <h2 class="uc-card-title">Carbon &amp; oxygen</h2>
+            <p class="uc-small uc-muted">
+                Annual CO₂ sequestration and O₂ generation for the whole plan and per species,
+                adjusted for expected survival and the maturity of each growth rate.
+            </p>
+        </div>
+        <div class="uc-card">
+            <h2 class="uc-card-title">Air quality</h2>
+            <p class="uc-small uc-muted">
+                PM2.5, PM10, NO₂, SO₂ and CO removal, individually and as a total load.
+            </p>
+        </div>
+        <div class="uc-card">
+            <h2 class="uc-card-title">Canopy &amp; feasibility</h2>
+            <p class="uc-small uc-muted">
+                Canopy area at maturity against available land, and whether the planting
+                physically fits at the recommended spacing.
+            </p>
+        </div>
+        <div class="uc-card">
+            <h2 class="uc-card-title">Explainable</h2>
+            <p class="uc-small uc-muted">
+                Every result carries a calculation trace and the literature each reference
+                value came from. Estimates, presented as estimates.
+            </p>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="/js/pages/index.js"></script>
+</body>
+</html>

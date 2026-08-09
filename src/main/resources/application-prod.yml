@@ -1,0 +1,38 @@
+#
+# Production profile — quiet, cached, strict.
+# Credentials MUST come from the environment; there are no defaults worth shipping.
+#
+spring:
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: false
+  flyway:
+    clean-disabled: true
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 30d
+          cache-public: true
+      chain:
+        cache: true
+        compressed: true
+
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+
+app:
+  security:
+    # No default. Left unset, the seeded accounts cannot authenticate at all — an
+    # installation with no usable administrator is recoverable; one with a publicly known
+    # administrator password is not.
+    seed-password: ${UC_SEED_PASSWORD:}
+
+logging:
+  level:
+    root: WARN
+    com.urbancanopy: INFO

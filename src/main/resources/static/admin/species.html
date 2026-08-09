@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Species curation · UrbanCanopy admin</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🌳</text></svg>">
+    <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script>
+        try {
+            const stored = localStorage.getItem('uc.theme');
+            if (stored === 'dark' || stored === 'light') {
+                document.documentElement.setAttribute('data-theme', stored);
+            }
+        } catch (ignored) { /* private mode */ }
+    </script>
+</head>
+<body>
+<a class="uc-skip" href="#content">Skip to content</a>
+<main id="content"></main>
+<script type="module" src="/js/pages/adminSpecies.js"></script>
+</body>
+</html>
