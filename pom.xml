@@ -21,6 +21,15 @@
         a decision-support system that estimates the environmental impact of planned urban
         plantations using curated scientific reference values.
     </description>
+    <url>https://github.com/ASWIN-SENTHILKUMAR2006/urbancanopy</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <java.version>21</java.version>

@@ -62,6 +62,48 @@ a computed value says so.
 
 ---
 
+## Screens
+
+### The plan editor
+
+The core screen. A live estimate recalculates as you type — the `⟳ 21 ms` chip shows the round
+trip, because a claim of "live" is worth more when it is visible. Nothing is written to the
+database until you save, so an unsaved composition can still be evaluated.
+
+Note what it is willing to tell you: the canopy is capped at 100 % of the site but the true
+276.9 % is still stated, the planting is flagged **Overcrowded** with the shortfall and how many
+trees would actually fit, and a monoculture warning appears because one species is 62.5 % of the
+mix. All of it advisory — none of it blocking.
+
+![Plan editor with the live estimate](docs/screenshots/plan-editor.png)
+
+### Dashboard
+
+Aggregated across every plan, with each chart paired with a toggleable data table so no figure
+is carried by a picture alone.
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Plan results
+
+The full breakdown: per-species contribution, pollutant removal, canopy and feasibility
+assessment, the multi-year projection, relatable equivalences, and an *"How is this
+calculated?"* drawer showing the arithmetic with real numbers substituted.
+
+![Plan results](docs/screenshots/plan-results.png)
+
+### Species catalogue and comparison
+
+<p align="center">
+  <img src="docs/screenshots/species.png" width="49%" alt="Species catalogue">
+  <img src="docs/screenshots/compare.png" width="49%" alt="Plan comparison">
+</p>
+
+Twenty-five species with sourced reference values; comparison of two to four plans with
+normalised per-tree and per-100 m² rows, so a larger plan cannot win merely by being larger.
+
+---
+
 ## Quick start
 
 ### Prerequisites
@@ -219,3 +261,13 @@ rm -rf target && mvn test
 **Flyway reports a checksum mismatch** — an already-applied migration was edited. Migrations are
 immutable once applied; add a new one instead. (`V3` in this project exists for exactly that
 reason.)
+
+---
+
+## Licence
+
+[MIT](LICENSE) © 2026 Aswin Senthilkumar
+
+Vendored third-party assets keep their own licences: Bootstrap 5 (MIT), Chart.js (MIT) and
+OpenPDF (LGPL/MPL — chosen over iText 7 precisely because AGPL would have reached the whole
+application).
