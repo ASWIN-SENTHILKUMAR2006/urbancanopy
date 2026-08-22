@@ -37,3 +37,6 @@ desktop.ini
 
 ### Local-only working notes ###
 docs/07-complete-knowledge-base.md
+
+### Graphify — regenerated locally by the post-commit hook; not portable across machines ###
+graphify-out/
